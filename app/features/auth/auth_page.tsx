@@ -88,29 +88,31 @@ export default function AuthPage({
     <section className="md:w-1/2 bg-white px-8 py-8 md:py-10 border-b md:border-b-0 md:border-r border-[#e8e8e8]">
       {!showDashboard ? (
         <div>
-          <div className="inline-flex rounded-full bg-[#f0f0f0] p-1 mb-6">
-            <button
-              type="button"
-              onClick={() => setAuthMode("login")}
-              className={`px-4 py-1 text-sm rounded-full transition-colors ${
-                authMode === "login"
-                  ? "bg-[#6A0F0F] text-white shadow-sm hover:bg-[#5A0D0D]"
-                  : "text-[#4b5563]"
-              }`}
-            >
-              Login
-            </button>
-            <button
-              type="button"
-              onClick={() => setAuthMode("register")}
-              className={`px-4 py-1 text-sm rounded-full transition-colors ${
-                authMode === "register"
-                  ? "bg-[#6A0F0F] text-white shadow-sm hover:bg-[#5A0D0D]"
-                  : "text-[#4b5563]"
-              }`}
-            >
-              Register
-            </button>
+          <div className="flex justify-center md:justify-start mb-6">
+            <div className="inline-flex rounded-full bg-[#f0f0f0] p-1">
+              <button
+                type="button"
+                onClick={() => setAuthMode("login")}
+                className={`px-4 py-1 text-sm rounded-full transition-colors ${
+                  authMode === "login"
+                    ? "bg-[#6A0F0F] text-white shadow-sm hover:bg-[#5A0D0D]"
+                    : "text-[#4b5563]"
+                }`}
+              >
+                Login
+              </button>
+              <button
+                type="button"
+                onClick={() => setAuthMode("register")}
+                className={`px-4 py-1 text-sm rounded-full transition-colors ${
+                  authMode === "register"
+                    ? "bg-[#6A0F0F] text-white shadow-sm hover:bg-[#5A0D0D]"
+                    : "text-[#4b5563]"
+                }`}
+              >
+                Register
+              </button>
+            </div>
           </div>
 
           <h2 className="text-xl font-semibold text-[#111827] mb-2">
@@ -119,8 +121,8 @@ export default function AuthPage({
               : "Create your student account"}
           </h2>
           <p className="text-sm text-[#4b5563] mb-6">
-            Use your school email and a secure password. After sign in, your QR
-            code will be ready for attendance.
+            Use your email and a secure password. After sign in, your QR code
+            will be ready for attendance.
           </p>
 
           <form
