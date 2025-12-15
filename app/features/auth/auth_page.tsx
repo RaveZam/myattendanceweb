@@ -86,42 +86,6 @@ export default function AuthPage({
 
   return (
     <section className="md:w-1/2 bg-white px-8 py-8 md:py-10 border-b md:border-b-0 md:border-r border-[#e8e8e8]">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold text-[#111827]">MyAttendance</h1>
-        {showDashboard && (
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <button
-                type="button"
-                disabled={parentLoading}
-                className="text-sm rounded-full bg-[#8B1414] text-white px-3 py-1 shadow-md shadow-[#8B1414]/30 hover:bg-[#6A0F0F] transition-colors disabled:opacity-50"
-              >
-                Sign out
-              </button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Sign out?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  Are you sure you want to sign out? You will need to sign in
-                  again to access your attendance QR code.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction
-                  onClick={onLogout}
-                  disabled={parentLoading}
-                  className="bg-[#8B1414] text-white hover:bg-[#6A0F0F] shadow-md shadow-[#8B1414]/30"
-                >
-                  {parentLoading ? "Signing out..." : "Sign out"}
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        )}
-      </div>
-
       {!showDashboard ? (
         <div>
           <div className="inline-flex rounded-full bg-[#f0f0f0] p-1 mb-6">
@@ -130,7 +94,7 @@ export default function AuthPage({
               onClick={() => setAuthMode("login")}
               className={`px-4 py-1 text-sm rounded-full transition-colors ${
                 authMode === "login"
-                  ? "bg-[#8B1414] text-white shadow-sm"
+                  ? "bg-[#6A0F0F] text-white shadow-sm hover:bg-[#5A0D0D]"
                   : "text-[#4b5563]"
               }`}
             >
@@ -141,7 +105,7 @@ export default function AuthPage({
               onClick={() => setAuthMode("register")}
               className={`px-4 py-1 text-sm rounded-full transition-colors ${
                 authMode === "register"
-                  ? "bg-[#8B1414] text-white shadow-sm"
+                  ? "bg-[#6A0F0F] text-white shadow-sm hover:bg-[#5A0D0D]"
                   : "text-[#4b5563]"
               }`}
             >
@@ -169,36 +133,40 @@ export default function AuthPage({
             {authMode === "register" && (
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <label
-                    htmlFor="firstName"
-                    className="block text-sm font-medium text-[#374151] mb-1"
-                  >
-                    First name
-                  </label>
-                  <input
-                    id="firstName"
-                    type="text"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    required
-                    className="w-full rounded-2xl border border-[#e0e0e0] bg-white px-3 py-2 text-sm text-[#111827] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8B1414]/70 focus:border-transparent"
-                    placeholder="e.g. Jane"
-                  />
-                  <label
-                    htmlFor="lastName"
-                    className="block text-sm font-medium text-[#374151] mb-1"
-                  >
-                    Last name
-                  </label>
-                  <input
-                    id="lastName"
-                    type="text"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    required
-                    className="w-full rounded-2xl border border-[#e0e0e0] bg-white px-3 py-2 text-sm text-[#111827] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8B1414]/70 focus:border-transparent"
-                    placeholder="e.g. Doe"
-                  />
+                  <div>
+                    <label
+                      htmlFor="firstName"
+                      className="block text-sm font-medium text-[#374151] mb-1"
+                    >
+                      First name
+                    </label>
+                    <input
+                      id="firstName"
+                      type="text"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                      className="w-full rounded-2xl border border-[#e0e0e0] bg-white px-3 py-2 text-sm text-[#111827] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#6A0F0F]/70 focus:border-transparent"
+                      placeholder="e.g. Jane"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="lastName"
+                      className="block text-sm font-medium text-[#374151] mb-1"
+                    >
+                      Last name
+                    </label>
+                    <input
+                      id="lastName"
+                      type="text"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                      className="w-full rounded-2xl border border-[#e0e0e0] bg-white px-3 py-2 text-sm text-[#111827] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#6A0F0F]/70 focus:border-transparent"
+                      placeholder="e.g. Doe"
+                    />
+                  </div>
                 </div>
                 <div>
                   <label
@@ -213,8 +181,8 @@ export default function AuthPage({
                     value={studentId}
                     onChange={(e) => setStudentId(e.target.value)}
                     required
-                    className="w-full rounded-2xl border border-[#e0e0e0] bg-white px-3 py-2 text-sm text-[#111827] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8B1414]/70 focus:border-transparent"
-                    placeholder="e.g. 2025-00123"
+                    className="w-full rounded-2xl border border-[#e0e0e0] bg-white px-3 py-2 text-sm text-[#111827] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#6A0F0F]/70 focus:border-transparent"
+                    placeholder="e.g. 24-3017"
                   />
                 </div>
               </>
@@ -234,8 +202,8 @@ export default function AuthPage({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full rounded-2xl border border-[#e5e7eb] bg-white px-3 py-2 text-sm text-[#111827] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8B1414]/70 focus:border-transparent"
-                placeholder="you@student.school.edu"
+                className="w-full rounded-2xl border border-[#e5e7eb] bg-white px-3 py-2 text-sm text-[#111827] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#6A0F0F]/70 focus:border-transparent"
+                placeholder="you@gmail.com"
               />
             </div>
 
@@ -255,7 +223,7 @@ export default function AuthPage({
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full rounded-2xl border border-[#e5e7eb] bg-white px-3 py-2 text-sm text-[#111827] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#8B1414]/70 focus:border-transparent"
+                className="w-full rounded-2xl border border-[#e5e7eb] bg-white px-3 py-2 text-sm text-[#111827] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#6A0F0F]/70 focus:border-transparent"
                 placeholder="••••••••"
               />
             </div>
@@ -269,7 +237,7 @@ export default function AuthPage({
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 inline-flex w-full items-center justify-center rounded-2xl bg-[#8B1414] px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#8B1414]/30 hover:bg-[#6A0F0F] disabled:opacity-70 disabled:cursor-not-allowed transition-colors"
+              className="mt-2 inline-flex w-full items-center justify-center rounded-2xl bg-[#6A0F0F] px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#6A0F0F]/30 hover:bg-[#5A0D0D] disabled:opacity-70 disabled:cursor-not-allowed transition-colors"
             >
               {loading
                 ? "Please wait..."
@@ -312,6 +280,38 @@ export default function AuthPage({
                 {user?.email}
               </p>
             </div>
+          </div>
+          <div className="mt-6">
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <button
+                  type="button"
+                  disabled={parentLoading}
+                  className="w-full text-sm rounded-full bg-[#6A0F0F] text-white px-4 py-2 shadow-md shadow-[#6A0F0F]/30 hover:bg-[#5A0D0D] transition-colors disabled:opacity-50"
+                >
+                  Sign out
+                </button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Sign out?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Are you sure you want to sign out? You will need to sign in
+                    again to access your attendance QR code.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={onLogout}
+                    disabled={parentLoading}
+                    className="bg-[#6A0F0F] text-white hover:bg-[#5A0D0D] shadow-md shadow-[#6A0F0F]/30"
+                  >
+                    {parentLoading ? "Signing out..." : "Sign out"}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </div>
       )}

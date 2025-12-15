@@ -84,7 +84,12 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#faf5f5] flex items-center justify-center px-4 py-6">
       <main className="w-full max-w-5xl rounded-3xl bg-white shadow-lg border border-[#e8e8e8] overflow-hidden">
-        <div className="flex flex-col md:flex-row">
+        <div className="px-8 py-6 border-b border-[#e8e8e8]">
+          <h1 className="text-2xl font-semibold text-[#6A0F0F]">
+            MyAttendance
+          </h1>
+        </div>
+        <div className="flex flex-col-reverse md:flex-row">
           <AuthPage
             session={session}
             user={user}
@@ -97,8 +102,6 @@ export default function Home() {
             user={user}
             profile={profile}
             showDashboard={showDashboard}
-            onLogout={handleLogout}
-            loading={loading}
           />
         </div>
       </main>

@@ -3,17 +3,6 @@
 import { useMemo, useRef } from "react";
 import QRCode from "react-qr-code";
 import type { User } from "@supabase/supabase-js";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 
 type Profile = {
   firstName: string;
@@ -25,16 +14,12 @@ type QRSectionProps = {
   user: User | null;
   profile: Profile | null;
   showDashboard: boolean;
-  onLogout: () => Promise<void>;
-  loading: boolean;
 };
 
 export default function QRSection({
   user,
   profile,
   showDashboard,
-  onLogout,
-  loading,
 }: QRSectionProps) {
   const qrRef = useRef<HTMLDivElement>(null);
 
@@ -118,19 +103,19 @@ export default function QRSection({
       <div className="w-full max-w-xs text-center text-[#111827]">
         {showDashboard ? (
           <>
-            <div className="rounded-3xl bg-[#fef7f5] shadow-md border-2 border-[#8B1414] p-5 flex flex-col items-center">
+            <div className="rounded-3xl bg-[#fef7f5] shadow-md border-2 border-[#6A0F0F] p-5 flex flex-col items-center">
               <div
                 ref={qrRef}
-                className="rounded-2xl bg-white p-4 mb-4 border-2 border-[#8B1414]"
+                className="rounded-2xl bg-white p-4 mb-4 border-2 border-[#6A0F0F]"
               >
                 <QRCode
                   value={qrValue || "attendance-qr"}
                   size={180}
                   bgColor="#ffffff"
-                  fgColor="#8B1414"
+                  fgColor="#6A0F0F"
                 />
               </div>
-              <p className="text-xs font-medium text-[#8B1414] uppercase tracking-wide mb-1">
+              <p className="text-xs font-medium text-[#6A0F0F] uppercase tracking-wide mb-1">
                 Attendance QR
               </p>
               <p className="text-[11px] text-[#4b5563]">
@@ -145,16 +130,9 @@ export default function QRSection({
               <button
                 type="button"
                 onClick={() => downloadQR("png")}
-                className="text-sm rounded-full bg-[#8B1414] text-white px-4 py-2 shadow-md shadow-[#8B1414]/30 hover:bg-[#6A0F0F] transition-colors"
+                className="text-sm rounded-full bg-[#6A0F0F] text-white px-4 py-2 shadow-md shadow-[#6A0F0F]/30 hover:bg-[#5A0D0D] transition-colors"
               >
-                Download PNG
-              </button>
-              <button
-                type="button"
-                onClick={() => downloadQR("jpg")}
-                className="text-sm rounded-full bg-[#8B1414] text-white px-4 py-2 shadow-md shadow-[#8B1414]/30 hover:bg-[#6A0F0F] transition-colors"
-              >
-                Download JPG
+                Download QR Code
               </button>
             </div>
           </>
@@ -165,7 +143,7 @@ export default function QRSection({
             </p>
             <h2 className="text-2xl font-semibold text-[#111827]">
               Sign in to get your{" "}
-              <span className="underline decoration-[#8B1414]/70">
+              <span className="underline decoration-[#6A0F0F]/70">
                 personal QR
               </span>
             </h2>
