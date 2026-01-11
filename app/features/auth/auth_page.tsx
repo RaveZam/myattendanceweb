@@ -43,6 +43,7 @@ export default function AuthPage({
   const [authMode, setAuthMode] = useState<AuthMode>("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [studentId, setStudentId] = useState("");
@@ -51,6 +52,13 @@ export default function AuthPage({
 
   const handleAuth = async () => {
     setError(null);
+
+    // Validate password match for registration
+    if (authMode === "register" && password !== confirmPassword) {
+      setError("Passwords do not match. Please try again.");
+      return;
+    }
+
     setLoading(true);
     try {
       if (authMode === "login") {
@@ -92,7 +100,10 @@ export default function AuthPage({
             <div className="inline-flex rounded-full bg-[#f0f0f0] p-1">
               <button
                 type="button"
-                onClick={() => setAuthMode("login")}
+                onClick={() => {
+                  setAuthMode("login");
+                  setConfirmPassword("");
+                }}
                 className={`px-4 py-1 text-sm rounded-full transition-colors ${
                   authMode === "login"
                     ? "bg-[#6A0F0F] text-white shadow-sm hover:bg-[#5A0D0D]"
@@ -229,6 +240,27 @@ export default function AuthPage({
                 placeholder="••••••••"
               />
             </div>
+
+            {authMode === "register" && (
+              <div>
+                <label
+                  htmlFor="confirmPassword"
+                  className="block text-sm font-medium text-[#374151] mb-1"
+                >
+                  Confirm Password
+                </label>
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  autoComplete="new-password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  className="w-full rounded-2xl border border-[#e5e7eb] bg-white px-3 py-2 text-sm text-[#111827] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#6A0F0F]/70 focus:border-transparent"
+                  placeholder="••••••••"
+                />
+              </div>
+            )}
 
             {error && (
               <p className="text-xs text-[#b91c1c] bg-[#fee2e2] border border-[#fecaca] rounded-2xl px-3 py-2">
